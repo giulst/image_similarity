@@ -1,6 +1,6 @@
 # image_similarity
 
-### Installation 
+## Installation 
 It is possible to install the repository from Github:
 
 git clone https://github.com/giulst/image_similarity/
@@ -13,15 +13,15 @@ The repository contains:
 
 Data can be downloaded and saved in a folder called "data".
 
-### Idea
+## Idea
 The idea behind the pipeline is divided in three main step:
-# 1. Extract from each figure some important features that can be used to define similarity between shapes.
+### 1. Extract from each figure some important features that can be used to define similarity between shapes.
 Among them, the color of the shape and of the background, the center of gravity of the feature which determines the position, the dimension of the shape.
 To obtain the colors, I simply found the two unique colors used, then the background color was set as the color present in the majoprity of corners (to avoid cases where the image covers one of the corners).
 The dimension of the shape was obtained counting the number of pixels with the shape color.
 The gravity center was found checking the mean of x and y axis of pixels colored with the shape color.
 
-# 2. Implement a CNN to classify the geometric shape
+### 2. Implement a CNN to classify the geometric shape
 This CNN is then used as a first step to define the most similar images to the input ones, taking advantage of the geometric family class already available in the dataset.
 
 Before applying the CNN, some preprocessing of the images was done, to "simplify" the work for the neural network, so it could focus only on the geometric family recognition (all the other important features have been already saved in step 1). 
@@ -30,7 +30,7 @@ To avoid overfitting each layer of the CNN was built with a not too high number 
 
 The CNN was trained on 1000 images (80% as train set and 20% as validation set). Cross Entropy was used as loss, since we have a multiclass classification and accuracy on the validation set was used as performance metrics.
 
-# 3. Similarity measure
+### 3. Similarity measure
 Once that images have been classified in one specific geometric family, only the images of that classes are retained for further checks.
 Also for test images the preprocessing steps are applied.
 The features obtained in step 1 are then used to measure the distance between the new object and all the images used to train the model.
